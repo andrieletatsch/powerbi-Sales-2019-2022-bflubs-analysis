@@ -6,22 +6,6 @@ This project is part of my professional portfolio as a **Data Analyst**, with a 
 
 ---
 
-## 📌 Table of Contents
-
-- [Executive Summary](#executive-summary)
-- [Business Context](#business-context)
-- [Tech Stack](#tech-stack)
-- [Data Architecture](#data-architecture)
-- [ETL Process](#etl-process)
-- [Data Modeling](#data-modeling)
-- [DAX Measures](#dax-measures)
-- [Dashboard Structure](#dashboard-structure)
-- [Key Insights & Recommendations](#key-insights--recommendations)
-- [Project Structure](#project-structure)
-- [About](#about)
-
----
-
 ## 🎯 Executive Summary
 
 Between **2019 and 2022**, **Bf.lubs** — a fictitious Brazilian company in the lubricants and additives sector — achieved **37% revenue growth** while maintaining stable margins (~55%). However, integrated data analysis revealed a critical operational risk:
@@ -69,20 +53,9 @@ Between 2019 and 2022, the company experienced consistent revenue growth and inc
 ## 🗂️ Data Architecture
 
 The model follows a **Star Schema**, with `fat_sales` as the central fact table connected to five dimension tables via foreign keys.
+<img width="1178" height="737" alt="modelo de relacionamento" src="https://github.com/user-attachments/assets/f2117e6f-2134-4d80-aff8-2dd1cac96ee8" />
 
-```
-                    ┌──────────────┐
-                    │ dim_calendar │
-                    └──────┬───────┘
-                           │
-┌──────────────┐    ┌──────▼───────┐    ┌──────────────────────────┐
-│  dim_plant   ├────►              ◄────┤       dim_material        │
-└──────────────┘    │  fat_sales   │    └──────────────────────────┘
-                    │  (fact table)│
-┌──────────────┐    │              │    ┌──────────────────────────┐
-│ dim_customer ├────►              ◄────┤ delivery_status_detail   │
-└──────────────┘    └──────────────┘    └──────────────────────────┘
-```
+
 
 **All relationships are N:1 with single-direction filtering** — no bidirectional relationships, avoiding filter ambiguity and performance degradation.
 
@@ -269,6 +242,7 @@ The dashboard is composed of **5 strategically structured pages** + **2 custom t
 - **Revenue & Cost Trend** — Stacked area chart identifying margin compression/expansion periods
 - **Revenue Concentration Trend** — Line chart showing ~81.5% concentration in top 3 plants
 - **Order Demand Trend** — Column chart for capacity planning and forecasting
+<img width="1456" height="812" alt="Executive Overview pagina 1" src="https://github.com/user-attachments/assets/79df72fc-390b-467f-8474-4b92094563c3" />
 
 ---
 
@@ -284,6 +258,7 @@ The dashboard is composed of **5 strategically structured pages** + **2 custom t
 - **Sales Year-to-Date** — Accumulated line chart for annual forecast validation
 - **Plant Performance Matrix** — Detailed table with State, Sales, Sales vs LY, Orders, AOV, Margin, Margin %, Cost, Customers — with conditional formatting
 - **Sales by Division / Plant** — Horizontal bar chart: Midwest/Southeast $601M · South $246M · North/Northeast $56M
+<img width="1445" height="809" alt="pagina2 " src="https://github.com/user-attachments/assets/b92be100-1276-4f31-ad46-e2886e90c496" />
 
 ---
 
@@ -297,6 +272,7 @@ The dashboard is composed of **5 strategically structured pages** + **2 custom t
 - **Delivery SLA % Trend vs Target** — Line chart with 75% reference line and gap shading
 - **Delivery Status Distribution** — Stacked bar: Early/On Time 372.3K · 1–2 Days Late 185.8K · 3–4 Days Late 185.9K · 5–7 Days Late 185.3K
 - **Delivery Performance by Plant/Division** — Horizontal bar: Midwest/Southeast $646M · South $235M · North/Northeast $58M
+<img width="1451" height="812" alt="deliveriew overview" src="https://github.com/user-attachments/assets/83a28e48-5070-4bd2-b4e2-62fa04374de7" />
 
 ---
 
@@ -314,6 +290,7 @@ The dashboard is composed of **5 strategically structured pages** + **2 custom t
 - **Sales vs SLA Scatter Plot** — Bubble chart with quadrant analysis (bubble size = Sales at Risk):
   - ⚠️ *High Risk*: Low SLA + High Sales
   - ✅ *Strong Performance*: High SLA + High Sales
+<img width="1448" height="812" alt="Revenue at risk" src="https://github.com/user-attachments/assets/75c8c0b9-aeb1-440a-895a-02678a21eaed" />
 
 ---
 
@@ -328,6 +305,7 @@ The dashboard is composed of **5 strategically structured pages** + **2 custom t
 - **Main Driver of Delay by Category** — Bar chart with delay volume and percentage
 - **Main Driver of Delay by Product and Category** — Combined analysis for targeted interventions
 - **Delivery Trend Over Time** — Stacked area chart: Early / On Time / Overdue over time
+<img width="1454" height="813" alt="Delivery detail" src="https://github.com/user-attachments/assets/4039b276-9238-481c-9349-262a5a856e50" />
 
 ---
 
@@ -336,8 +314,12 @@ The dashboard is composed of **5 strategically structured pages** + **2 custom t
 **Tooltip 1 — Product Detail · Delivery & Delay Analysis**
 Fast access to delivery performance by product, including delay trends and key drivers.
 
+<img width="453" height="513" alt="delivery" src="https://github.com/user-attachments/assets/dc507587-07a0-478b-8e6c-7914e09af25a" />
+
 **Tooltip 2 — Sales at Risk · Financial Impact Overview**
 Immediate view of the financial impact of delivery delays by plant — combining KPIs, trends, and rankings for executive analysis.
+
+<img width="450" height="384" alt="Sales risk" src="https://github.com/user-attachments/assets/ab20c582-234f-4556-89e1-88bed90cbd0e" />
 
 ---
 
@@ -393,20 +375,11 @@ powerbi-Sales-2019-2022-bflubs-analysis/
 ├── 📂 pbix/
 │   └── Sales_Performance_Delivery_Risk.pbix
 │
-├── 📂 docs/
-│   └── Sales_Performance_Delivery_Risk_Article.docx
-│
 └── README.md
 ```
 
+🔗 [**View Interactive Dashboard**](https://app.powerbi.com/view?r=eyJrIjoiZGM3N2NjZmEtZThmMy00NjY4LTg4MjgtOWUyNDExOGYxZDY2IiwidCI6ImJlMzIyOTBmLTRkNTgtNGY1Yy05ODY2LWJiZmQxNzMwZGU3OCIsImMiOjN9)
 ---
 
-## 👩‍💻 About
-
-**Andriele Tatsch** — Data Analyst | Business Intelligence | Data Storytelling
-
-[![GitHub](https://img.shields.io/badge/GitHub-andrieletatsch-181717?style=flat&logo=github)](https://github.com/andrieletatsch)
-
----
 
 *Analysis Period: 2019–2022 · Last Update: January 2026*
